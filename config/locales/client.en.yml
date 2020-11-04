@@ -563,6 +563,7 @@ en:
           one: "You have <strong>%{count}</strong> post pending."
           other: "You have <strong>%{count}</strong> posts pending."
         ok: "OK"
+      example_username: "username"
 
     user_action:
       user_posted_topic: "<a href='%{userUrl}'>%{user}</a> posted <a href='%{topicUrl}'>the topic</a>"
@@ -1390,9 +1391,9 @@ en:
         link_groups: Groups
         link_expires_at: Expires
         create: "Send Invite"
-        copy_link: "Copy Link"
-        generate_link: "Copy Invite Link"
-        link_generated: "Invite link generated successfully!"
+        copy_link: "Show Link"
+        generate_link: "Create Invite Link"
+        link_generated: "Here's your invite link!"
         valid_for: "Invite link is only valid for this email address: %{email}"
         single_user: "Invite by email"
         multiple_user: "Invite by link"
