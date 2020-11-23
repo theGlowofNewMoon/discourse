@@ -801,7 +801,7 @@ class Category < ActiveRecord::Base
     query =
       slug_path.inject(nil) do |parent_id, slug|
         Category.where(
-          slug: slug,
+          slug: slug.downcase,
           parent_category_id: parent_id,
         ).select(:id)
       end
