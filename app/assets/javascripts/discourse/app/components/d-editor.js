@@ -395,26 +395,29 @@ export default Component.extend({
 
       this.set("preview", cooked);
 
-      const cookedElement = document.createElement("div");
-      cookedElement.innerHTML = cooked;
-      linkSeenHashtags($(cookedElement));
-      linkSeenMentions($(cookedElement), this.siteSettings);
-      resolveCachedShortUrls(this.siteSettings, cookedElement);
-      loadOneboxes(
-        cookedElement,
-        null,
-        null,
-        null,
-        this.siteSettings.max_oneboxes_per_post,
-        false,
-        true
-      );
+      if (this.siteSettings.enable_diffhtml_preview) {
+        const cookedElement = document.createElement("div");
+        cookedElement.innerHTML = cooked;
 
-      /* global diff */
-      diff.innerHTML(
-        this.element.querySelector(".d-editor-preview"),
-        cookedElement.innerHTML
-      );
+        linkSeenHashtags($(cookedElement));
+        linkSeenMentions($(cookedElement), this.siteSettings);
+        resolveCachedShortUrls(this.siteSettings, cookedElement);
+        loadOneboxes(
+          cookedElement,
+          null,
+          null,
+          null,
+          this.siteSettings.max_oneboxes_per_post,
+          false,
+          true
+        );
+
+        /* global diff */
+        diff.innerHTML(
+          this.element.querySelector(".d-editor-preview"),
+          cookedElement.innerHTML
+        );
+      }
 
       schedule("afterRender", () => {
         if (this._state !== "inDOM") {
