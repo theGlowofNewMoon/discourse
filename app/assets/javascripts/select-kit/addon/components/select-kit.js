@@ -1,27 +1,20 @@
-import { createPopper } from "@popperjs/core";
-import I18n from "I18n";
 import EmberObject, { computed, get } from "@ember/object";
-import { guidFor } from "@ember/object/internals";
-import Component from "@ember/component";
-import deprecated from "discourse-common/lib/deprecated";
-import { makeArray } from "discourse-common/lib/helpers";
-import UtilsMixin from "select-kit/mixins/utils";
-import PluginApiMixin from "select-kit/mixins/plugin-api";
-import Mixin from "@ember/object/mixin";
-import { isPresent, isEmpty, isNone } from "@ember/utils";
-import {
-  next,
-  debounce,
-  cancel,
-  throttle,
-  bind,
-  schedule,
-} from "@ember/runloop";
-import { Promise } from "rsvp";
-import {
+import PluginApiMixin, {
   applyContentPluginApiCallbacks,
   applyOnChangePluginApiCallbacks,
 } from "select-kit/mixins/plugin-api";
+import { bind, cancel, next, schedule, throttle } from "@ember/runloop";
+import { isEmpty, isNone, isPresent } from "@ember/utils";
+import Component from "@ember/component";
+import I18n from "I18n";
+import Mixin from "@ember/object/mixin";
+import { Promise } from "rsvp";
+import UtilsMixin from "select-kit/mixins/utils";
+import { createPopper } from "@popperjs/core";
+import deprecated from "discourse-common/lib/deprecated";
+import discourseDebounce from "discourse-common/lib/debounce";
+import { guidFor } from "@ember/object/internals";
+import { makeArray } from "discourse-common/lib/helpers";
 
 export const MAIN_COLLECTION = "MAIN_COLLECTION";
 export const ERRORS_COLLECTION = "ERRORS_COLLECTION";
@@ -387,7 +380,7 @@ export default Component.extend(
         cancel(this._searchPromise);
       }
 
-      debounce(this, this._debouncedInput, event.target.value, 200);
+      discourseDebounce(this, this._debouncedInput, event.target.value, 200);
     },
 
     _debouncedInput(filter) {

@@ -1,15 +1,18 @@
-import { queryAll } from "discourse/tests/helpers/qunit-helpers";
-import { exists } from "discourse/tests/helpers/qunit-helpers";
 import {
-  fillIn,
+  acceptance,
+  count,
+  exists,
+  queryAll,
+} from "discourse/tests/helpers/qunit-helpers";
+import {
   click,
+  currentURL,
+  fillIn,
   triggerKeyEvent,
   visit,
-  currentURL,
 } from "@ember/test-helpers";
-import { test } from "qunit";
-import { acceptance, count } from "discourse/tests/helpers/qunit-helpers";
 import siteSettingFixture from "discourse/tests/fixtures/site-settings";
+import { test } from "qunit";
 
 acceptance("Admin - Site Settings", function (needs) {
   let updatedTitle;

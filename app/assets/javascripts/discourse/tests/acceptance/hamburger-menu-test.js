@@ -1,10 +1,10 @@
-import { queryAll } from "discourse/tests/helpers/qunit-helpers";
-import { click, visit } from "@ember/test-helpers";
-import { test } from "qunit";
 import {
   acceptance,
+  queryAll,
   updateCurrentUser,
 } from "discourse/tests/helpers/qunit-helpers";
+import { click, visit } from "@ember/test-helpers";
+import { test } from "qunit";
 
 acceptance("Opening the hamburger menu with some reviewables", function (
   needs

@@ -1,5 +1,5 @@
-import User from "discourse/models/user";
 import Pretender from "pretender";
+import User from "discourse/models/user";
 
 export function parsePostData(query) {
   const result = {};
@@ -310,6 +310,10 @@ export function applyDefaultHandlers(pretender) {
   );
 
   pretender.get("/c/bug/find_by_slug.json", () =>
+    response(fixturesByUrl["/c/1/show.json"])
+  );
+
+  pretender.get("/c/1-category/find_by_slug.json", () =>
     response(fixturesByUrl["/c/1/show.json"])
   );
 

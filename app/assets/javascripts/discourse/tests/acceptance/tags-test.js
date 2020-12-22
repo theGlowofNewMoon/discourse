@@ -1,11 +1,11 @@
-import { queryAll } from "discourse/tests/helpers/qunit-helpers";
-import { exists } from "discourse/tests/helpers/qunit-helpers";
-import { click, visit, currentURL } from "@ember/test-helpers";
-import { test } from "qunit";
 import {
-  updateCurrentUser,
   acceptance,
+  exists,
+  queryAll,
+  updateCurrentUser,
 } from "discourse/tests/helpers/qunit-helpers";
+import { click, currentURL, visit } from "@ember/test-helpers";
+import { test } from "qunit";
 
 acceptance("Tags", function (needs) {
   needs.user();
@@ -307,5 +307,12 @@ acceptance("Tag info", function (needs) {
       queryAll(".tag-info .synonyms-list .tag-box").length === 1,
       "removed a synonym"
     );
+  });
+
+  test("composer will not set tags if user cannot create them", async function (assert) {
+    await visit("/tag/planters");
+    await click("#create-topic");
+    const composer = this.container.lookup("controller:composer");
+    assert.equal(composer.model.tags, null);
   });
 });

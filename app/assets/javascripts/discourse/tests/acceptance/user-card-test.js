@@ -1,10 +1,8 @@
-import { exists } from "discourse/tests/helpers/qunit-helpers";
-import { visit } from "@ember/test-helpers";
-import { test } from "qunit";
-import { acceptance } from "discourse/tests/helpers/qunit-helpers";
-import userFixtures from "discourse/tests/fixtures/user-fixtures";
+import { acceptance, exists } from "discourse/tests/helpers/qunit-helpers";
+import { click, visit } from "@ember/test-helpers";
 import User from "discourse/models/user";
-import { click } from "@ember/test-helpers";
+import { test } from "qunit";
+import userFixtures from "discourse/tests/fixtures/user-fixtures";
 
 acceptance("User Card - Show Local Time", function (needs) {
   needs.user();

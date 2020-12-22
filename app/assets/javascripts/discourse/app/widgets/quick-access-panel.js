@@ -1,8 +1,8 @@
 import I18n from "I18n";
+import { Promise } from "rsvp";
 import Session from "discourse/models/session";
 import { createWidget } from "discourse/widgets/widget";
 import { h } from "virtual-dom";
-import { Promise } from "rsvp";
 
 /**
  * This tries to enforce a consistent flow of fetching, caching, refreshing,
@@ -95,12 +95,17 @@ export default createWidget("quick-access-panel", {
       return [h("div.spinner-container", h("div.spinner"))];
     }
 
-    let bottomItems = [];
     const items = this.getItems().length
       ? this.getItems().map((item) => this.itemHtml(item))
       : [this.emptyStatePlaceholderItem()];
 
+    let bottomItems = [];
+
     if (!this.hideBottomItems()) {
+      if (this.showDoNotDisturb) {
+        bottomItems.push(this.attach("do-not-disturb"));
+      }
+
       bottomItems.push(
         // intentionally a link so it can be ctrl clicked
         this.attach("link", {

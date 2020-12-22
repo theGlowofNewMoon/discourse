@@ -1,13 +1,14 @@
-import { queryAll } from "discourse/tests/helpers/qunit-helpers";
-import { exists } from "discourse/tests/helpers/qunit-helpers";
-import { visit } from "@ember/test-helpers";
-import { test } from "qunit";
-import { acceptance } from "discourse/tests/helpers/qunit-helpers";
-import selectKit from "discourse/tests/helpers/select-kit-helper";
-import Site from "discourse/models/site";
-import Session from "discourse/models/session";
+import {
+  acceptance,
+  exists,
+  queryAll,
+} from "discourse/tests/helpers/qunit-helpers";
+import { click, visit } from "@ember/test-helpers";
 import cookie, { removeCookie } from "discourse/lib/cookie";
-import { click } from "@ember/test-helpers";
+import Session from "discourse/models/session";
+import Site from "discourse/models/site";
+import selectKit from "discourse/tests/helpers/select-kit-helper";
+import { test } from "qunit";
 
 acceptance("User Preferences - Interface", function (needs) {
   needs.user();
